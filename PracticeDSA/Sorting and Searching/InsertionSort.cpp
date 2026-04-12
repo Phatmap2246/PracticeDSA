@@ -240,46 +240,46 @@ void insertionSort(int arr[], int n){
         arr[j+1] = target;
     }
 }
-// merge sort
-void merge(int arr[], int left, int mid, int right){
-    int i = left, j = mid+1, index = 0;
-    int* temp = new int [right - left+1];
-    while (i<=mid && j<=right) {
-        if (arr[i] < arr[j]) {
-            temp[index] = arr[i];
-            i++;
-        }
-        else{
-            temp[index] = arr[j];
-            j++;
-        }
-        index++;
-    }
-    while (i<=mid) {
-        temp[index] = arr[i];
-        i++;
-        index++;
-    }
-    while (j<=right) {
-        temp[index] = arr[j];
-        j++;
-        index++;
-    }
-    for (int k = 0; k<index; k++) {
-        arr[left + k] = temp[k];
-    }
-    delete [] temp;
-    temp = nullptr;
-}
-void mergeSort(int arr[], int left, int right){
-    if (left>=right) {
-        return;
-    }
-    int mid = (left+right)/2;
-    mergeSort(arr, left, mid);
-    mergeSort(arr, mid+1, right);
-    merge(arr,left,mid,right);
-}
+//// merge sort
+//void merge(int arr[], int left, int mid, int right){
+//    int i = left, j = mid+1, index = 0;
+//    int* temp = new int [right - left+1];
+//    while (i<=mid && j<=right) {
+//        if (arr[i] < arr[j]) {
+//            temp[index] = arr[i];
+//            i++;
+//        }
+//        else{
+//            temp[index] = arr[j];
+//            j++;
+//        }
+//        index++;
+//    }
+//    while (i<=mid) {
+//        temp[index] = arr[i];
+//        i++;
+//        index++;
+//    }
+//    while (j<=right) {
+//        temp[index] = arr[j];
+//        j++;
+//        index++;
+//    }
+//    for (int k = 0; k<index; k++) {
+//        arr[left + k] = temp[k];
+//    }
+//    delete [] temp;
+//    temp = nullptr;
+//}
+//void mergeSort(int arr[], int left, int right){
+//    if (left>=right) {
+//        return;
+//    }
+//    int mid = (left+right)/2;
+//    mergeSort(arr, left, mid);
+//    mergeSort(arr, mid+1, right);
+//    merge(arr,left,mid,right);
+//}
 /*Bài tập 1: Sắp xếp mảng số nguyên và Đếm số lần "Dịch chuyển" (Shift)
  
  Yêu cầu:

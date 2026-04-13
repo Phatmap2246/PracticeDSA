@@ -252,3 +252,99 @@ int findKthSmallest(int arr[], int n, int k){
 }
 
 
+/* Bài tập 7: Sắp xếp mảng có nhiều phần tử trùng nhau (Dutch National Flag)
+ * Yêu cầu: * Cho mảng chỉ chứa các số 0, 1, 2 (ví dụ: [2,0,1,2,1,0]).
+     * Viết thuật toán Quick Sort 3 phân đoạn (3-way partition) để đưa hết số 0 về đầu, số 1 ở giữa, số 2 ở cuối trong đúng 1 lần duyệt.*/
+
+void DutchNationalFlag(int* A, int n){
+    int low = 0, mid = 0, high = n-1;
+    while (mid <= high) {
+        if (A[mid] == 0) {
+            swap(A[mid], A[low]);
+            low++;
+            mid++;
+        }
+        else if (A[mid] == 2){
+            swap(A[high], A[mid]);
+            high--;
+        }
+        else{
+            mid++;
+        }
+        
+    }
+}
+/*Bài tập 9: Tối ưu hóa cho mảng nhỏ (Hybrid Quick Sort)
+ * Yêu cầu: * Giống bài Merge Sort lúc sáng: Khi mảng con có kích thước N<10, hãy dùng Insertion Sort thay vì tiếp tục gọi đệ quy Quick Sort.
+     * Đây là cách mà các thư viện chuẩn của C++ (std::sort) hoạt động ở "hậu trường".*/
+
+void insertionSortQS(int *A,int n){
+    int j = 0, target = 0, index = 0;
+    for (int i = 1; i<n; i++) {
+        j = i-1;
+        target = A[i];
+        while (j >= 0 && A[j] > target) {
+            A[j+1] = A[j];
+            j--;
+        }
+        A[j+1] = target;
+    }
+}
+
+void quickSortIS(int *A, int left, int right){
+    if (right - left +1 <=10) {
+        insertionSortQS(A, right+1);
+        return;
+    }
+    int i = left, j = right, pivot_Value = A[(left+right)/2];
+    while (i <= j) {
+        while (A[i] < pivot_Value) {
+            i++;
+        }
+        while (A[j] > pivot_Value){
+            j--;
+        }
+        if (i <= j) {
+            swap(A[i], A[j]);
+            i++;
+            j--;
+        }
+    }
+    if (left < j) {
+        quickSortIS(A, left, j);
+    }
+    if (right > i){
+        quickSortIS(A, i, right);
+    }
+}
+
+/*Bài tập 10: Sắp xếp theo "Khoảng cách" (Custom Comparator)
+ * Yêu cầu: * Cho mảng các số nguyên và một số X.
+     * Sắp xếp các số trong mảng sao cho những số gần X nhất (trị tuyệt đối của hiệu nhỏ nhất) sẽ đứng trước.
+     * Ví dụ: arr = [10, 2, 14, 4, 7], X = 8 → Kết quả: [7, 10, 4, 14, 2] (vì ∣7−8∣=1, ∣10−8∣=2,...).*/
+
+void quickSortComparator(int *A, int left, int right, int x){
+    if (left >= right) {
+        return;
+    }
+    int i = left , j = right, pivot_value = A[(left+right)/2];
+    while (i <= j) {
+        while (abs(A[i]-x) < abs(pivot_value-x)) {
+            i++;
+        }
+        while (abs(A[j] - x) > abs(pivot_value-x)) {
+            j--;
+        }
+        if (i <= j) {
+            swap(A[i],A[j]);
+            i++;
+            j--;
+        }
+    }
+    if (left < j) {
+        quickSortComparator(A, left, j,x);
+    }
+    if (right > i){
+        quickSortComparator(A, i, right,x);
+    }
+}

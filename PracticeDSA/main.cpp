@@ -15,7 +15,7 @@ using namespace std;
 int main(){
     srand(static_cast<int>(time(0)));
     auto start = chrono::high_resolution_clock::now();
-    int A[] ={9,2,3,4,5,1,10,5};
+    int A[] ={10, 2, 14, 4, 7};
     const char* arr[] = {"Zebra", "Apple", "Mango", "Banana"};
     Student B[] ={
         {"Phat", 9},
@@ -32,9 +32,17 @@ int main(){
         cout<<arr[i]<<'\t';
     }
     cout<<endl;
-    int k = 5, smallestK = 0;
-    smallestK = findKthSmallest(A, 7, k);
-    cout<<smallestK<<endl;
+    quickSortComparator(A, 0, 4, 8);
+    for(int x:A){
+        cout<<x<<" ";
+    }
+    cout<<endl;
+    int D[] = {2,0,1,2,1,0,1};
+    DutchNationalFlag(D, 7);
+    for(int x:D){
+        cout<<x<<" ";
+    }
+    cout<<endl;
     auto end = chrono::high_resolution_clock::now();
     chrono::duration<double,milli>time = end - start;
     cout<<"Running Time: "<<time.count()<<" ms"<<endl;

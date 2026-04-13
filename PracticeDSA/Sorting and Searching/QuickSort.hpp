@@ -25,4 +25,7 @@ void quickSortHoare(int *A, int left, int right);
 void quickSortGPA(Student* st1, int left, int right);
 void quickSortCString(const char* arr[], int left, int right);
 int findKthSmallest(int arr[], int n, int k);
+void DutchNationalFlag(int* A, int n);
+void quickSortIS(int *A, int left, int right);
+void quickSortComparator(int *A, int left, int right, int x);
 #endif /* QuickSort_hpp */
